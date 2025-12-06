@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Screen Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Green Screen Remover</h1>
+            <p>Upload an image, pick a color, and make it transparent.</p>
+        </header>
+
+        <div class="upload-area" id="drop-zone">
+            <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp" hidden>
+            <div class="upload-message">
+                <p>Drag & Drop your image here or <span>Browse</span></p>
+                <small>Supports JPG, PNG, WEBP</small>
+            </div>
+        </div>
+
+        <div class="workspace" id="workspace" style="display: none;">
+            <div class="controls">
+                <div class="control-group">
+                    <label>Target Color</label>
+                    <div class="color-picker-container">
+                        <div id="color-preview" class="color-preview"></div>
+                        <span id="color-hex">#00FF00</span>
+                    </div>
+                    <small class="hint">Click on the original image to pick a color.</small>
+                </div>
+
+                <div class="control-group">
+                    <label for="sensitivity">Sensitivity <span id="sensitivity-val">50</span></label>
+                    <input type="range" id="sensitivity" min="0" max="100" value="50">
+                </div>
+
+                <div class="control-group">
+                    <label for="smoothing">Edge Smoothing <span id="smoothing-val">0</span></label>
+                    <input type="range" id="smoothing" min="0" max="50" value="0">
+                </div>
+
+                <button id="download-btn" class="btn primary-btn">Download Result</button>
+                <button id="reset-btn" class="btn secondary-btn">Start Over</button>
+            </div>
+
+            <div class="preview-area">
+                <div class="image-container">
+                    <h3>Original</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="original-canvas"></canvas>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <h3>Result</h3>
+                    <div class="img-wrapper">
+                        <img id="result-image" alt="Processed Image">
+                        <div class="loading-overlay" id="loading">Processing...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
