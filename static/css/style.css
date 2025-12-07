@@ -39,6 +39,12 @@ header {
     padding-bottom: 1rem;
 }
 
+.logo {
+    max-width: 20%;
+    height: auto;
+    margin: 0 auto 1rem auto; /* Center the logo and add some bottom margin */
+}
+
 h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
